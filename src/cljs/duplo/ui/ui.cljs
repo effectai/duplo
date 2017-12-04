@@ -53,7 +53,7 @@
     [:li [:a {:href "assets"} "Assets"]]
     [:li [:a {:href "wallet"} "Wallet"]]]])
 
-(rum/defc app < rum/reactive [state]
+(rum/defc app < rum/reactive [state callback-fn]
   [:div.app
    [:header (main-menu)]
    (case (rum/react (rum/cursor-in state [:route]))

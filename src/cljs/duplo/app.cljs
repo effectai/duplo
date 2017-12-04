@@ -1,5 +1,7 @@
 (ns duplo.app
+  (:require-macros [cljs.core.async.macros :refer [go go-loop]])
   (:require 
+   [clojure.core.async :as a :refer [<!]]
    [rum.core :as rum]
    [bidi.bidi :as bidi]
    [accountant.core :as accountant]
@@ -12,7 +14,17 @@
 (def app-routes
   ["/" {"" :blocks
         "blocks" :blocks
-        "assets" :assets}])
+        "assets" :assets
+        "wallet" :wallet}])
+
+(defn event-handler [chan]
+  (go-loop []
+      (let [[event & params] (<! chan)]
+        (prn " > received event " event)
+        (case event
+          :generate-keys (blockchain/make-request
+                          "makekeys" [3] #(blockchain/refresh-keys!))))
+      (recur)))
 
 (defn init []
   (accountant/configure-navigation!
@@ -22,7 +34,9 @@
     :path-exists? (fn [path]
                     (boolean (bidi/match-route app-routes path)))})
 
-  (when-let [node (.getElementById js/document "container")]
-    (rum/mount (ui/app state) node)
-    (blockchain/refresh-data!)
-    (blockchain/start-sync)))
+  (let [event-chan (a/chan)]
+    (event-handler event-chan)
+    (when-let [node (.getElementById js/document "container")]
+      (rum/mount (ui/app state #(go (>! event-chan %))) node)
+      (blockchain/refresh-data!)
+      (blockchain/start-sync))))
