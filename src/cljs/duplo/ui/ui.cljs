@@ -45,12 +45,17 @@
     [:dt "NEO:"] [:dd neo]
     [:dt "GAS:"] [:dd gas]]])
 
-(rum/defc key-list < rum/reactive [keys callback-fn]
-  (conj
+(rum/defc key-list < rum/reactive
+  [key-pairs callback-fn]
+  (reduce
+   conj
    [:div]
-   (map key-item (rum/react keys))
-   [:p [:button {:on-click #(callback-fn [:generate-keys])}
-        "Generate more"]]))
+   [(->> key-pairs rum/react
+         (sort-by #(get-in % [:balance :neo]))
+         reverse
+         (map key-item))
+    [:p [:button {:on-click #(callback-fn [:generate-keys])}
+         "Generate more"]]]))
 
 (rum/defc page-blocks [state]
   [:div.block-list
