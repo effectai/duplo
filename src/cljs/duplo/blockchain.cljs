@@ -35,6 +35,12 @@
      (when block
        (assoc-state! [:blocks n] block)))))
 
+(defn refresh-keys! []
+  (make-request
+   "getkeys"
+   (fn [res]
+     (swap! state #(assoc-in % [:keys] res)))))
+
 (defn refresh-data! []
   (make-request
    "getblockcount"
@@ -48,7 +54,9 @@
   (make-request
    "getassets"
    (fn [res]
-     (swap! state #(assoc-in % [:assets] res)))))
+     (swap! state #(assoc-in % [:assets] res))))
+
+  (refresh-keys!))
 
 (defn- update-block! []
   (.log js/console "Updating block...")

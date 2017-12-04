@@ -5,7 +5,8 @@
                       :height 0
                       :assets []
                       :block-ids []
-                      :blocks {}}))
+                      :blocks {}
+                      :keys []}))
 
 (defn assoc-state! [key-path val]
   (swap! state #(assoc-in % key-path val)))

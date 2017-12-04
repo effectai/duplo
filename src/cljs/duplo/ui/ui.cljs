@@ -35,6 +35,23 @@
    [:div]
    (map asset-item (rum/react items))))
 
+(rum/defc key-item
+  [{:keys [public-key address wif]
+    {:keys [neo gas]} :balance :as key}]
+  [:div.block
+   [:span.title address]
+   [:span.hash public-key]
+   [:dl.attrs
+    [:dt "NEO:"] [:dd neo]
+    [:dt "GAS:"] [:dd gas]]])
+
+(rum/defc key-list < rum/reactive [keys callback-fn]
+  (conj
+   [:div]
+   (map key-item (rum/react keys))
+   [:p [:button {:on-click #(callback-fn [:generate-keys])}
+        "Generate more"]]))
+
 (rum/defc page-blocks [state]
   [:div.block-list
    [:h3 "Blocks"]
@@ -46,7 +63,12 @@
    [:h3 "Assets"]
    (asset-list (rum/cursor-in state [:assets]))])
 
-(rum/defc main-menu []
+(rum/defc page-wallet [state callback-fn]
+  [:div.block-list
+   [:h3 "Keys"]
+   (key-list (rum/cursor-in state [:keys]) callback-fn)])
+
+(rum/defc main-menu [route]
   [:menu
    [:ul
     [:li [:a {:href "blocks"} "Blocks"]]
@@ -58,4 +80,5 @@
    [:header (main-menu)]
    (case (rum/react (rum/cursor-in state [:route]))
      :blocks (page-blocks state)
-     :assets (page-assets state))])
+     :assets (page-assets state)
+     :wallet (page-wallet state callback-fn))])
