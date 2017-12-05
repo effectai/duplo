@@ -1,6 +1,7 @@
 .block-list{
         padding-left:10px;
         min-width:800px;
+        flex-grow:1;
         h3{
                 margin:0;
                 margin-bottom:10px;
@@ -13,48 +14,61 @@
         }
 }
 
-.block {
-        width:870px;
-        table{
-                text-align:left;
-                th{
-                        text-align:left;
-                        font-size:14px;
-                        font-weight:@fw-normal;
-                        color:#535353;
-                }
-                td{
-                        font-weight: @fw-bold;
-                        color:#393939;
-                }
-                td,th{padding-right:20px;}
+.Table {
+        $light-color: #ffffff;
+        $dark-color: #f2f2f2;
+        $md: 500px;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        border: 1px solid $dark-color;
+        font-size: 1rem;
+        margin: 0.5rem;
+        line-height: 1.5;
+
+        // .Table-header
+        &-header {
+                display: none;
         }
-        height:60px;
-        border: 1px solid rgba(186,186,186,0.5);
-
-        padding:9px 0 14px 16px;
-        background:white;
-
-        text-align: center;
-        margin-bottom:5px;
-
-        span {
-                display: block;
-                line-height: 32px;
-        }
-        dl {
-                margin: 10px 0 0 0;
-                dd, dt { 
-                        font-size: 12px;
-                        display: inline-block;
-                        margin: 0 5px 0 0;
+        // .Table-row
+        .block {
+                display:flex;
+                width: 100%;
+                min-height:80px;
+                background:white;
+                margin-top:5px;
+                &:nth-child(2n){
+                        background:#fafafa;
                 }
-                dd { margin-right: 25px; }
-                dt {
-                        font-weight: bold;
+                &:hover{
+                        background: rgba(186,186,186,0.5)
+                }
+                .item {
+                        &.grow{
+                               min-width:40%;
+                        }
+                        &.fixed{
+                                max-width:10%;
+                        }
+                        display: flex;
+                        flex-flow: column nowrap;
+                        flex-basis:0;
+                        flex-grow: 1;
+                        padding: 1em;
+                        word-break: break-word;
+                        font-weight:@fw-bold;
+                        &:before {
+                                color:#535353;
+                                content: attr(data-header);
+                                width: 30%;
+                                font-weight: @fw-normal;
+                                word-break:normal;
+                        }
                 }
         }
 }
+
 
 .app{
         display:flex;

@@ -4,29 +4,26 @@
 
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
-  [:div.block
-   [:table.block-info
-
-    [:th "Hash"]
-    [:th "Transaction"]
-    [:th "Size"]
-    [:th "Confirmation"]
-
-    [:tr 
-     [:td hsh]
-     [:td (count tx)]
-     [:td size]
-     [:td confirmations]
-     ]
-    ]
-   ])
+     [:div.block
+     [:div.item.grow {:data-header "Validator"} hsh]
+     [:div.item.fixed {:data-header "Transaction"} (count tx)]
+     [:div.item.fixed {:data-header "Size"} size]
+     [:div.item.fixed {:data-header "Confirmation"}confirmations]]
+   )
 
 (rum/defc block-list < rum/reactive
   [block-ids blocks]
   (conj
    [:div]
+    [:div.Table
+     [:div.Table-header "Validator"]
+     [:div.Table-header "Transaction"]
+     [:div.Table-header "Size"]
+     [:div.Table-header "Confirmation"]
    (map #(block-item (get (rum/react blocks) %))
-        (reverse (rum/react block-ids)))))
+        (reverse (rum/react block-ids)))]))
+
+
 
 (rum/defc asset-item
   [{names :name :keys [type amount admin txid] :as asset}]
