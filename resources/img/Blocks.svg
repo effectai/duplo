@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Blocks</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="99.5655293%" id="linearGradient-1">
+            <stop stop-color="#57B031" offset="0%"></stop>
+            <stop stop-color="#BACF11" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Duplo-layout" transform="translate(-74.000000, -185.000000)" stroke="url(#linearGradient-1)" stroke-width="2">
+            <g id="menu" transform="translate(55.000000, 41.000000)">
+                <g id="Blocks" transform="translate(20.000000, 145.000000)">
+                    <circle id="Oval" cx="20" cy="20" r="20"></circle>
+                    <g id="black_blockchain-45" transform="translate(8.000000, 11.000000)" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline id="Shape" points="3.24705882 12.7411765 0 10.5882353 0 3.52941176 5.95058824 0.0282352941 12 3.52941176 12 10.5882353 9.17647059 12.7058824"></polyline>
+                        <polyline id="Shape" points="12 3.52941176 17.9576471 0.0282352941 24 3.52941176 24 10.5882353 20.6611765 12.7411765"></polyline>
+                        <path d="M14.8235294,12.7058824 L12,10.5882353" id="Shape"></path>
+                        <polyline id="Shape" points="14.7529412 8.46352941 17.6470588 10.5882353 17.6470588 17.6470588 12 20.4705882 6.35294118 17.6470588 6.35294118 10.5882353 9.33882353 8.46352941"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

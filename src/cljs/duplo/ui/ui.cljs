@@ -5,12 +5,21 @@
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
   [:div.block
-   [:span.title index]
-   [:span.hash hsh]
-   [:dl.attrs
-    [:dt "transactions:"] [:dd (count tx)]
-    [:dt "size:"] [:dd size]
-    [:dt "confirmations:"] [:dd confirmations]]])
+   [:table.block-info
+
+    [:th "Hash"]
+    [:th "Transaction"]
+    [:th "Size"]
+    [:th "Confirmation"]
+
+    [:tr 
+     [:td hsh]
+     [:td (count tx)]
+     [:td size]
+     [:td confirmations]
+     ]
+    ]
+   ])
 
 (rum/defc block-list < rum/reactive
   [block-ids blocks]
@@ -76,9 +85,10 @@
 (rum/defc main-menu [route]
   [:menu
    [:ul
-    [:li [:a {:href "blocks"} "Blocks"]]
-    [:li [:a {:href "assets"} "Assets"]]
-    [:li [:a {:href "wallet"} "Wallet"]]]])
+    [:li.logo [:a {:href "/"} [:img {:src "/img/Logo.svg"}] "DUPLO" ]]
+    [:li [:a {:href "blocks"} [:img {:src "/img/Blocks.svg"}] "Blocks" ]]
+    [:li [:a {:href "assets"} [:img {:src "/img/Blocks.svg"}] "Assets" ]]
+    [:li [:a {:href "wallet"} [:img {:src "/img/Blocks.svg"}] "Wallet" ]]]])
 
 (rum/defc app < rum/reactive [state callback-fn]
   [:div.app
