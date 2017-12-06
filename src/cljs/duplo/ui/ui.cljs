@@ -39,7 +39,7 @@
    [:div]
    (map asset-item (rum/react items))))
 
-(rum/defc key-item
+(rum/defc wallet-item
   [{:keys [public-key address wif]
     {:keys [neo gas]} :balance :as key}]
   [:div.block
@@ -49,7 +49,7 @@
     [:dt "NEO:"] [:dd neo]
     [:dt "GAS:"] [:dd gas]]])
 
-(rum/defc key-list < rum/reactive
+(rum/defc wallet-list < rum/reactive
   [key-pairs callback-fn]
   (reduce
    conj
@@ -57,7 +57,7 @@
    [(->> key-pairs rum/react
          (sort-by #(get-in % [:balance :neo]))
          reverse
-         (map key-item))
+         (map wallet-item))
     [:p [:button {:on-click #(callback-fn [:generate-keys])}
          "Generate more"]]]))
 
@@ -75,7 +75,7 @@
 (rum/defc page-wallet [state callback-fn]
   [:div.block-list
    [:h3 "Keys"]
-   (key-list (rum/cursor-in state [:keys]) callback-fn)])
+   (wallet-list (rum/cursor-in state [:keys]) callback-fn)])
 
 (rum/defc main-menu [route]
   [:menu
