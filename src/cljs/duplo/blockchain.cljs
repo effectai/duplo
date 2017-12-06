@@ -66,5 +66,9 @@
       (update-state! [:height] inc)))
   (fetch-block (:height @state)))
 
-(defn start-sync []
+(defn start-sync!
+  "Start updating blocks every 'interval' seconds. Clears old timers"
+  []
+  (if (not (nil? @update-timer))
+    (.clearInterval js/window @update-timer))
   (reset! update-timer (js/setInterval update-block! ms-per-block)))

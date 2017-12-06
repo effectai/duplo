@@ -39,4 +39,4 @@
     (when-let [node (.getElementById js/document "container")]
       (rum/mount (ui/app state #(go (>! event-chan %))) node)
       (blockchain/refresh-data!)
-      (blockchain/start-sync))))
+      (blockchain/start-sync!))))
