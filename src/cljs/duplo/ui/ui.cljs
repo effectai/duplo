@@ -27,7 +27,7 @@
      [:div.item.grow {:data-header "tx ID"} txid]
      [:div.item.fixed {:data-header "Type"} type]
      [:div.item.fixed {:data-header "Amount"} amount]
-     [:div.item.fixed {:data-header "type"} admin]
+     [:div.item.fixed {:data-header "Admin"} admin]
       ]))
 
 (rum/defc asset-list < rum/reactive [items]
