@@ -4,7 +4,7 @@
 
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
-     [:div.block
+     [:div.row
      [:div.item.grow {:data-header "Validator"} hsh]
      [:div.item.fixed {:data-header "Transactions"} (count tx)]
      [:div.item.fixed {:data-header "Size"} size]
@@ -15,42 +15,40 @@
   [block-ids blocks]
   (conj
    [:div]
-    [:div.Table
-     [:div.Table-header "Validator"]
-     [:div.Table-header "Transactions"]
-     [:div.Table-header "Size"]
-     [:div.Table-header "Confirmations"]
+    [:div.table
    (map #(block-item (get (rum/react blocks) %))
         (reverse (rum/react block-ids)))]))
 
 (rum/defc asset-item
   [{names :name :keys [type amount admin txid] :as asset}]
   (let [name-en (->> names (filter #(= (:lang %) "en")) first :name)]
-    [:div.block
-     [:span.title name-en]
-     [:span.tx-id txid]
-     [:dl.attrs
-      [:dt "type:"] [:dd type]
-      [:dt "amount:"] [:dd amount]
-      [:dt "admin:"] [:dd admin]]]))
+    [:div.row
+     [:div.item.fixed {:data-header "Title"} name-en]
+     [:div.item.grow {:data-header "tx ID"} txid]
+     [:div.item.fixed {:data-header "Type"} type]
+     [:div.item.fixed {:data-header "Amount"} amount]
+     [:div.item.fixed {:data-header "type"} admin]
+      ]))
 
 (rum/defc asset-list < rum/reactive [items]
   (conj
    [:div]
-   (map asset-item (rum/react items))))
+    [:div.table
+   (map asset-item (rum/react items))]))
 
 (rum/defc wallet-item
   [{:keys [public-key address wif]
     {:keys [neo gas]} :balance :as key}]
-  [:div.block
-   [:span.title address]
-   [:span.hash public-key]
-   [:dl.attrs
-    [:dt "NEO:"] [:dd neo]
-    [:dt "GAS:"] [:dd gas]]])
+  [:div.row
+   [:div.item.grow {:data-header "Address"} address]
+   [:div.item.grow {:data-header "Public-key"} public-key]
+   [:div.item.fixed {:data-header "NEO"} neo]
+   [:div.item.fixed {:data-header "GAS"} gas]
+  ])
 
 (rum/defc wallet-list < rum/reactive
   [key-pairs callback-fn]
+  [:div.table
   (reduce
    conj
    [:div]
@@ -59,7 +57,7 @@
          reverse
          (map wallet-item))
     [:p [:button {:on-click #(callback-fn [:generate-keys])}
-         "Generate more"]]]))
+         "Generate more"]]] )])
 
 (rum/defc page-blocks [state]
   [:div.block-list
