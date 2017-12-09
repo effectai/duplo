@@ -5,7 +5,7 @@
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
      [:div.row
-     [:div.item.grow {:data-header "Validator"} hsh]
+     [:div.item.grow {:data-header "Validator"} [:span.hash 0 [:span.vert "x"] [:span.value (subs hsh 2)]]]
      [:div.item.fixed {:data-header "Transactions"} (count tx)]
      [:div.item.fixed {:data-header "Size"} size]
      [:div.item.fixed {:data-header "Confirmations"}confirmations]]
