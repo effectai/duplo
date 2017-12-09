@@ -4,15 +4,22 @@ header{
         width:80px;
         menu{
                 li{
+                        border-bottom: 1px solid rgba(0,255,0,0.2);
+                        padding: 15px 0;
+                        height: 60px;
+                        &:hover{
+                                background:rgba(87,175,49,0.1);
+                        }
                         &.logo{
                                 font-weight:@fw-bold;
-                                height:125px;
+                                height:100px;
                                 img{margin-bottom:5px;}
+                                border-bottom:none;
                         }
 
-                        height:80px;
                         list-style:none;
                         text-align:center;
+
                         a{
                                 color:@green;
                                 text-decoration:none;

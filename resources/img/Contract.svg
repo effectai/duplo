@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48 (47235) - http://www.bohemiancoding.com/sketch -->
+    <title>Contract</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="99.5655293%" id="linearGradient-1">
+            <stop stop-color="#57B031" offset="0%"></stop>
+            <stop stop-color="#BACF11" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Duplo-layout-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-72.000000, -464.000000)">
+        <g id="menu" transform="translate(55.000000, 41.000000)">
+            <g id="Wallet-Copy" transform="translate(9.000000, 424.000000)">
+                <g id="Contract" transform="translate(9.000000, 0.000000)">
+                    <circle id="Oval-Copy-2" stroke="url(#linearGradient-1)" stroke-width="2" cx="20" cy="20" r="20"></circle>
+                    <g id="black_credit-card-copy" transform="translate(7.000000, 12.000000)">
+                        <path d="M3.61111111,4.33333333 L0,4.33333333" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M26,2.16666667 L26,14.4444444 C25.8992495,15.1965213 25.3076324,15.7881384 24.5555556,15.8888889 L1.44444444,15.8888889 C0.669451067,15.836467 0.0524219262,15.2194378 0,14.4444444 L0,4.33333333" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M0,1.44444444 C0.100750454,0.692367562 0.692367562,0.100750454 1.44444444,0 L24.5555556,0 C25.3533002,0 26,0.646699806 26,1.44444444 L26,2.16666667" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle id="Oval-Copy" fill="url(#linearGradient-1)" fill-rule="nonzero" cx="23.4722222" cy="6.13888889" r="1.08333333"></circle>
+                        <path d="M6.5,5.77777778 L20.2222222,5.77777778" id="Shape-Copy-2" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2.52777778,10.8333333 C3.12608626,10.8333333 3.61111111,10.3483085 3.61111111,9.75 C3.61111111,9.15169152 3.12608626,8.66666667 2.52777778,8.66666667 C1.9294693,8.66666667 1.44444444,9.15169152 1.44444444,9.75 C1.44444444,10.3483085 1.9294693,10.8333333 2.52777778,10.8333333 Z" id="Oval-Copy-2" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                        <path d="M23.8333333,9.38888889 L5.77777778,9.38888889" id="Shape-Copy-3" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle id="Oval-Copy-3" fill="url(#linearGradient-1)" fill-rule="nonzero" cx="13.3611111" cy="13.3611111" r="1.08333333"></circle>
+                        <polyline id="Shape-Copy-4" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2.16666667 13 4.63070396 13 10.1111111 13"></polyline>
+                        <polyline id="Shape-Copy-5" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="16.6111111 13 18.851145 13 23.8333333 13"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

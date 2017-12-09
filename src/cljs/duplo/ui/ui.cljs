@@ -80,8 +80,9 @@
    [:ul
     [:li.logo [:a {:href "/"} [:img {:src "/img/Logo.svg"}] "DUPLO" ]]
     [:li [:a {:href "blocks"} [:img {:src "/img/Blocks.svg"}] "Blocks" ]]
-    [:li [:a {:href "assets"} [:img {:src "/img/Blocks.svg"}] "Assets" ]]
-    [:li [:a {:href "wallet"} [:img {:src "/img/Blocks.svg"}] "Wallet" ]]]])
+    [:li [:a {:href "assets"} [:img {:src "/img/Assets.svg"}] "Assets" ]]
+    [:li [:a {:href "contracts"} [:img {:src "/img/Contract.svg"}] "Contracts" ]]
+    [:li [:a {:href "wallet"} [:img {:src "/img/Wallet.svg"}] "Wallet" ]]]])
 
 (rum/defc app < rum/reactive [state callback-fn]
   [:div.app

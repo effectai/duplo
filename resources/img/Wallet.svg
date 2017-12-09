@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48 (47235) - http://www.bohemiancoding.com/sketch -->
+    <title>Wallet</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="99.5655293%" id="linearGradient-1">
+            <stop stop-color="#57B031" offset="0%"></stop>
+            <stop stop-color="#BACF11" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Duplo-layout-Copy-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-72.000000, -371.000000)">
+        <g id="menu" transform="translate(55.000000, 41.000000)">
+            <g id="Wallet" transform="translate(17.000000, 331.000000)">
+                <g transform="translate(1.000000, 0.000000)">
+                    <circle id="Oval-Copy-2" stroke="url(#linearGradient-1)" stroke-width="2" cx="20" cy="20" r="20"></circle>
+                    <g id="black_wallet-06" transform="translate(9.000000, 12.000000)">
+                        <path d="M17.4705882,16.1764706 L17.4705882,12.2941176" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M17.4705882,6.47058824 L17.4705882,2.58823529" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M22,14.8823529 C21.9703651,15.584433 21.4079624,16.1468357 20.7058824,16.1764706 L1.29411765,16.1764706 C0.620311209,16.0862055 0.0902651125,15.5561594 0,14.8823529 L0,2.58823529" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M0,5.82352941 L0,3.88235294 C0,3.1676315 0.579396206,2.58823529 1.29411765,2.58823529 L20.7058824,2.58823529 C21.4206038,2.58823529 22,3.1676315 22,3.88235294 L22,12.2941176" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M0,3.23529412 L0,1.29411765 C0,0.579396206 0.579396206,0 1.29411765,0 L17.4705882,0" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M21.8382353,6.47058824 L12.9411765,6.47058824 C9.05882353,6.47058824 9.05882353,12.2941176 12.9411765,12.2941176 L22,12.2941176" id="Shape" stroke="url(#linearGradient-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <circle id="Oval" fill="url(#linearGradient-1)" fill-rule="nonzero" cx="13.5882353" cy="9.38235294" r="1"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
