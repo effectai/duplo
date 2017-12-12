@@ -50,7 +50,7 @@
    (fn [height]
      (let [height (dec height)]
        (assoc-state! [:height] height)
-       (let [block-ids (range (- height num-blocks) height)]
+       (let [block-ids (range (max 0 (- height num-blocks)) height)]
          (assoc-state! [:block-ids] block-ids)
          (doall (map fetch-block block-ids))))))
 
