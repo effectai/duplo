@@ -52,12 +52,15 @@
   (reduce
    conj
    [:div]
-   [(->> key-pairs rum/react
+   [[:p
+     [:button {:on-click #(callback-fn [:generate-keys])}
+      "Generate Keys"]
+     [:button {:on-click #(callback-fn [:claim-initial-neo])}
+      "Claim Initial NEO"]]
+    (->> key-pairs rum/react
          (sort-by #(get-in % [:balance :neo]))
          reverse
-         (map wallet-item))
-    [:p [:button {:on-click #(callback-fn [:generate-keys])}
-         "Generate more"]]] )])
+         (map wallet-item))])])
 
 (rum/defc page-blocks [state]
   [:div.block-list

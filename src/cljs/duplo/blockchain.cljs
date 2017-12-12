@@ -28,18 +28,21 @@
                     (prn "rpc request debug" result)
                     (callback-fn result))))))
 
-(defn- fetch-block [n]
-  (make-request
-   "getblock" [n 1]
-   (fn [block]
-     (when block
-       (assoc-state! [:blocks n] block)))))
-
 (defn refresh-keys! []
   (make-request
    "getkeys"
    (fn [res]
      (swap! state #(assoc-in % [:keys] res)))))
+
+(defn- fetch-block [n]
+  (make-request
+   "getblock" [n 1]
+   (fn [block]
+     (when block
+       ;; When block contains a tx refresh wallet balances
+       (when (> (count (:tx block)) 1)
+         (js/setTimeout refresh-keys! 1000))
+       (assoc-state! [:blocks n] block)))))
 
 (defn refresh-data! []
   (make-request

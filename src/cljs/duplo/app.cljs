@@ -23,7 +23,9 @@
         (prn " > received event " event)
         (case event
           :generate-keys (blockchain/make-request
-                          "makekeys" [3] #(blockchain/refresh-keys!))))
+                          "makekeys" [3] #(blockchain/refresh-keys!))
+          :claim-initial-neo (blockchain/make-request
+                              "claiminitialneo" #())))
       (recur)))
 
 (defn init []
