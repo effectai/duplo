@@ -5,8 +5,6 @@
             [cljs.core.async :as async :refer [<!]]
             [duplo.state :refer [state assoc-state! update-state!]]))
 
-(def rpc-server "http://localhost:10336")
-
 (def num-blocks 10)
 
 (def ms-per-block 3000)
@@ -17,7 +15,7 @@
   ([method callback-fn] (make-request method [] callback-fn))
   ([method params callback-fn]
    (let [response (go (<! (http/post
-                           rpc-server
+                           (:rpc-server @state)
                            {:json-params {:jsonrpc 2.0 :id 1
                                           :method method
                                           :params params} 
