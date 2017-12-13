@@ -15,7 +15,7 @@
   ([method callback-fn] (make-request method [] callback-fn))
   ([method params callback-fn]
    (let [response (go (<! (http/post
-                           (:rpc-server @state)
+                           (:backend-url @state)
                            {:json-params {:jsonrpc 2.0 :id 1
                                           :method method
                                           :params params} 

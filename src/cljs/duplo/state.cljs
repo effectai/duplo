@@ -1,7 +1,7 @@
 (ns duplo.state
   "Keep track of application state")
 
-(defonce state (atom {:rpc-url "http://duplo-backend:10336"
+(defonce state (atom {:backend-url "http://localhost:10336"
                       :route :blocks
                       :height 0
                       :assets []
