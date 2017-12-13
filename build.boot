@@ -24,8 +24,7 @@
  '[deraen.boot-less      :refer [less]])
 
 (deftask build []
-  (comp (speak)
-        (cljs)
+  (comp (cljs)
         (less)
         (sift :move {#"less.css" "css/less.css" #"less.main.css.map" "css/less.main.css.map"})))
 
@@ -53,3 +52,10 @@
   []
   (comp (development)
         (run)))
+
+(deftask package
+  "Build production package"
+  []
+  (comp (production)
+        (build)
+        (target)))
