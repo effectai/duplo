@@ -1,7 +1,8 @@
 (ns duplo.ui.ui
   (:require
    [rum.core :as rum]
-   [goog.string :as gstring]))
+   [goog.string :as gstring]
+   [duplo.ui.svg :as svg]))
 
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
@@ -82,7 +83,7 @@
 (rum/defc main-menu [route]
   [:menu
    [:ul
-    [:li.logo [:a {:href "/"} [:img {:src "img/Logo.svg"}] "DUPLO" ]]
+    [:li.logo [:a {:href "/"} svg/logo "DUPLO" ]]
     [:li [:a {:href "blocks"} [:img {:src "img/Blocks.svg"}] "Blocks" ]]
     [:li [:a {:href "assets"} [:img {:src "img/Assets.svg"}] "Assets" ]]
     [:li [:a {:href "contracts"} [:img {:src "img/Contract.svg"}] "Contracts" ]]

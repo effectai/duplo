@@ -9,8 +9,14 @@ header {
             &.logo {
                 font-weight: @fw-bold;
                 height: 130px;
-                img {
+                svg {
                     margin-bottom: 10px;
+                    polygon {
+                        .transition(0.2s);
+                        &:hover {
+                            fill: rgb(220, 232, 123);
+                        }
+                    }
                 }
                 border-bottom: none;
             }
