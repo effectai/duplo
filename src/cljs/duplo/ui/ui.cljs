@@ -6,10 +6,10 @@
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
      [:div.row
-     [:div.item.grow {:data-header "Validator"} [:span.hash (str 0 (gstring/unescapeEntities "&times;") (subs hsh 2))]]
-     [:div.item.fixed {:data-header "Transactions"} (count tx)]
-     [:div.item.fixed {:data-header "Size"} size]
-     [:div.item.fixed {:data-header "Confirmations"}confirmations]]
+     [:div.item.grow [:div.label "Validator"] [:span.hash (str 0 (gstring/unescapeEntities "&times;") (subs hsh 2))]]
+     [:div.item.fixed [:div.label "Transactions"] (count tx)]
+     [:div.item.fixed [:div.label "Size"] size]
+     [:div.item.fixed [:div.label "Confirmations"] confirmations]]
    )
 
 (rum/defc block-list < rum/reactive
