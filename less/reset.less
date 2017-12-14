@@ -1,0 +1,57 @@
+/**
+ * Mini reset
+ */
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+ul, dl, menu {
+    list-style: none;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+img {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/**
+ * Prevent browsers from zooming when focussing input
+ */
+@media screen and (-webkit-min-pixel-ratio: 0) {
+    input[type="text"],
+    input[type="password"],
+    textarea, select {
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        font-size: 16px;
+    }
+}
+
+/**
+ * Mozilla resets
+ */
+button::-moz-inner,
+input[type="button"]::-moz-inner,
+input[type="submit"]::-moz-inner,
+input[type="reset"]::-moz-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * Webkit resets
+ */
+html {
+    -webkit-text-size-adjust: none;
+}

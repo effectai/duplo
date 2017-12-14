@@ -38,7 +38,7 @@
 
   (let [event-chan (a/chan)]
     (event-handler event-chan)
-    (when-let [node (.getElementById js/document "container")]
+    (when-let [node (.getElementById js/document "app")]
       (rum/mount (ui/app state #(go (>! event-chan %))) node)
       (blockchain/refresh-data!)
       (blockchain/start-sync!))))

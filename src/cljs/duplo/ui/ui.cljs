@@ -1,11 +1,12 @@
 (ns duplo.ui.ui
   (:require
-   [rum.core :as rum]))
+   [rum.core :as rum]
+   [goog.string :as gstring]))
 
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
      [:div.row
-     [:div.item.grow {:data-header "Validator"} [:span.hash 0 [:span.vert "x"] [:span.value (subs hsh 2)]]]
+     [:div.item.grow {:data-header "Validator"} [:span.hash (str 0 (gstring/unescapeEntities "&times;") (subs hsh 2))]]
      [:div.item.fixed {:data-header "Transactions"} (count tx)]
      [:div.item.fixed {:data-header "Size"} size]
      [:div.item.fixed {:data-header "Confirmations"}confirmations]]
@@ -88,9 +89,10 @@
     [:li [:a {:href "wallet"} [:img {:src "img/Wallet.svg"}] "Wallet" ]]]])
 
 (rum/defc app < rum/reactive [state callback-fn]
-  [:div.app
+  [:div.container.flex
    [:header (main-menu)]
-   (case (rum/react (rum/cursor-in state [:route]))
+   [:main (case (rum/react (rum/cursor-in state [:route]))
      :blocks (page-blocks state)
      :assets (page-assets state)
-     :wallet (page-wallet state callback-fn))])
+     :wallet (page-wallet state callback-fn))]
+   [:footer]])
