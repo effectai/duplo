@@ -8,8 +8,18 @@
         padding: 9px 0 7px 10px;
         color: white;
         font-weight: @fw-normal;
-    }
-    .table {
+}
+
+
+.table {
+
+        ul{
+                li{
+                        display:inline;
+                        margin-right:5px;
+                }
+        }
+
          display: flex;
          flex-flow: column nowrap;
          justify-content: space-between;
@@ -37,9 +47,7 @@
                  &.grow {
                      min-width: 40%;
                  }
-                 &.fixed {
-                     max-width: 10%;
-                 }
+
                  display: flex;
                  flex-flow: column nowrap;
                  flex-basis: 0;
@@ -47,13 +55,14 @@
                  padding: 16px;
                  word-break: break-word;
                  font-weight: @fw-bold;
-
                  .label {
                      color: @darkgrey;
                      width: 30%;
                      font-weight: @fw-normal;
                      word-break: normal;
                  }
+
+                 .small{display:none;}
                  .value {
                      font-size: 20px;
                      font-family: @monospace-font;
@@ -68,6 +77,26 @@
 /************************
  *       MOBILE         *
  ************************/
-@media @mobile {
-
+@media @tablet {
+        .block-list .table .row .item{
+                .small{
+                        display:block;
+                }
+                .big{
+                        display:none;
+                }
+        }
 }
+
+@media @mobile {
+        .block-list .table .row .item{
+                .small{
+                        display:block;
+                }
+                .big{
+                        display:none;
+                }
+        }
+}
+
+
