@@ -1,6 +1,7 @@
 (ns duplo.ui.ui
   (:require
-   [rum.core :as rum]))
+   [rum.core :as rum]
+   [duplo.ui.form :as form]))
 
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
@@ -27,8 +28,7 @@
      [:div.item.grow {:data-header "tx ID"} txid]
      [:div.item.fixed {:data-header "Type"} type]
      [:div.item.fixed {:data-header "Amount"} amount]
-     [:div.item.fixed {:data-header "Admin"} admin]
-      ]))
+     [:div.item.fixed {:data-header "Admin"} admin]]))
 
 (rum/defc asset-list < rum/reactive [items]
   (conj
@@ -36,31 +36,35 @@
     [:div.table
    (map asset-item (rum/react items))]))
 
-(rum/defc wallet-item
+(defn wallet-item
   [{:keys [public-key address wif]
     {:keys [neo gas]} :balance :as key}]
   [:div.row
    [:div.item.grow {:data-header "Address"} address]
    [:div.item.grow {:data-header "Public-key"} public-key]
    [:div.item.fixed {:data-header "NEO"} neo]
-   [:div.item.fixed {:data-header "GAS"} gas]
-  ])
+   [:div.item.fixed {:data-header "GAS"} gas]])
+
+(defn wallet-menu [callback-fn]
+  [:p
+   [:button {:on-click #(callback-fn [:generate-keys])}
+    "Generate Keys"]
+   [:button {:on-click #(callback-fn [:claim-initial-neo])}
+    "Claim Initial NEO"]
+   [:button {:on-click #(callback-fn [:open-form :make-tx])}
+    "Make Transaction"]])
 
 (rum/defc wallet-list < rum/reactive
   [key-pairs callback-fn]
-  [:div.table
-  (reduce
-   conj
-   [:div]
-   [[:p
-     [:button {:on-click #(callback-fn [:generate-keys])}
-      "Generate Keys"]
-     [:button {:on-click #(callback-fn [:claim-initial-neo])}
-      "Claim Initial NEO"]]
-    (->> key-pairs rum/react
-         (sort-by #(get-in % [:balance :neo]))
-         reverse
-         (map wallet-item))])])
+  (conj
+   [:div.table
+    (wallet-menu callback-fn)
+    (form/active-form callback-fn)]
+   (conj [:div]
+         (->> key-pairs rum/react
+              (sort-by #(get-in % [:balance :neo]))
+              reverse
+              (map wallet-item)))))
 
 (rum/defc page-blocks [state]
   [:div.block-list

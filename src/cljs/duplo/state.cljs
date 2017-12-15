@@ -2,12 +2,13 @@
   "Keep track of application state")
 
 (defonce state (atom {:backend-url "http://localhost:10336"
-                      :route :blocks
-                      :height 0
-                      :assets []
-                      :block-ids []
-                      :blocks {}
-                      :keys []}))
+                      :form nil                               ; current active form
+                      :route :blocks                          ; current active route
+                      :height 0                               ; blockchain height
+                      :assets []                              ; registered assets
+                      :block-ids []                           ; block ids in UI
+                      :blocks {}                              ; map of blocks keyed by id
+                      :keys []}))                             ; keys in the rpc wallet
 
 (defn assoc-state! [key-path val]
   (swap! state #(assoc-in % key-path val)))

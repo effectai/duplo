@@ -20,12 +20,16 @@
 (defn event-handler [chan]
   (go-loop []
       (let [[event & params] (<! chan)]
-        (prn " > received event " event)
+        (prn " > received event " event params)
         (case event
           :generate-keys (blockchain/make-request
                           "makekeys" [3] #(blockchain/refresh-keys!))
           :claim-initial-neo (blockchain/make-request
-                              "claiminitialneo" #())))
+                              "claiminitialneo" #())
+          :open-form (assoc-state! [:form] (first params))
+          :close-form (assoc-state! [:form] nil)
+          :make-tx (blockchain/make-transaction (first params))
+          nil))
       (recur)))
 
 (defn init []

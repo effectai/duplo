@@ -23,7 +23,6 @@
      (async/take! response
                   (fn [{:keys [status success] {result :result} :body}]
                     (if (not success) (js/alert "RPC error"))
-                    (prn "rpc request debug" result)
                     (callback-fn result))))))
 
 (defn refresh-keys! []
@@ -60,7 +59,6 @@
   (refresh-keys!))
 
 (defn- update-block! []
-  (.log js/console "Updating block...")
   (let [cur-height (:height @state)]
     (when (contains? (:blocks @state) cur-height)
       (update-state! [:block-ids] #(concat % [cur-height]))
@@ -73,3 +71,6 @@
   (if (not (nil? @update-timer))
     (.clearInterval js/window @update-timer))
   (reset! update-timer (js/setInterval update-block! ms-per-block)))
+
+(defn make-transaction [{:keys [to-addr amount asset]}]
+  (make-request "maketransaction" [to-addr amount asset] #()))
