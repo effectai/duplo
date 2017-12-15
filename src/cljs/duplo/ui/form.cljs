@@ -12,7 +12,7 @@
 (defn- gather-tx []
   {:to-addr (dom/value (dom/q ".to-addr"))
    :amount (dom/value (dom/q ".amount"))
-   :asset "0xc56f33fc6ecfcd0c225c4ab356fee59390af8560be0e930faebe74a6daff7c9b"})
+   :asset (dom/value (dom/q ".asset"))})
 
 (defn- asset-options []
   (map (fn [e] [:option {:value (:txid e)} (get-in e [:name 1 :name])]) (:assets @state)))
