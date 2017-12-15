@@ -2,7 +2,8 @@
   (:require
    [rum.core :as rum]
    [goog.string :as gstring]
-   [duplo.ui.svg :as svg]))
+   [duplo.ui.svg :as svg]
+   [duplo.ui.form :as form]))
 
 (defn dots-in-middle [s n]
   (let [middle (/ (count s) 2)
@@ -10,7 +11,6 @@
         [first tail] (split-at offs s)
         [_ end] (split-at (* offs 2) tail)]
     (reduce str (concat first "..." end))))
-
 
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
@@ -35,11 +35,10 @@
   (let [name-en (->> names (filter #(= (:lang %) "en")) first :name)]
     [:div.row
      [:div.item.fixed [:div.label "Name"] name-en]
-     [:div.item.grow  [:div.label "tx ID"] txid]
+     [:div.item.grow  [:div.label "Asset ID"] txid]
      [:div.item.fixed [:div.label "Type"]  type]
      [:div.item.fixed [:div.label "Amount"]  amount]
-     [:div.item.fixed [:div.label "Admin"] admin]
-      ]))
+     [:div.item.fixed [:div.label "Admin"] admin]]))
 
 (rum/defc asset-list < rum/reactive [items]
   (conj
@@ -47,31 +46,35 @@
     [:div.table
    (map asset-item (rum/react items))]))
 
-(rum/defc wallet-item
+(defn wallet-item
   [{:keys [public-key address wif]
     {:keys [neo gas]} :balance :as key}]
   [:div.row
    [:div.item.grow [:div.label "Address"] address]
-   [:div.item.grow  [:div.label "Public key"] public-key]
+   [:div.item.grow [:div.label "Public key"] public-key]
    [:div.item.fixed [:div.label "NEO"] neo]
-   [:div.item.fixed [:div.label "GAS"] gas]
-  ])
+   [:div.item.fixed [:div.label "GAS"] gas]])
+
+(defn wallet-menu [callback-fn]
+  [:ul
+   [:li [:button {:on-click #(callback-fn [:generate-keys])}
+    "Generate Keys"]]
+   [:li [:button {:on-click #(callback-fn [:claim-initial-neo])}
+    "Claim Initial NEO"]]
+   [:li [:button {:on-click #(callback-fn [:open-form :make-tx])}
+    "Make Transaction"]]])
 
 (rum/defc wallet-list < rum/reactive
   [key-pairs callback-fn]
-  [:div.table
-  (reduce
-   conj
-   [:div]
-   [[:ul
-     [:li [:button {:on-click #(callback-fn [:generate-keys])}
-      "Generate Keys"]]
-     [:li [:button {:on-click #(callback-fn [:claim-initial-neo])}
-      "Claim Initial NEO"]]]
-    (->> key-pairs rum/react
-         (sort-by #(get-in % [:balance :neo]))
-         reverse
-         (map wallet-item))])])
+  (conj
+   [:div.table
+    (wallet-menu callback-fn)
+    (form/active-form callback-fn)]
+   (conj [:div]
+         (->> key-pairs rum/react
+              (sort-by #(get-in % [:balance :neo]))
+              reverse
+              (map wallet-item)))))
 
 (rum/defc page-blocks [state]
   [:div.block-list
