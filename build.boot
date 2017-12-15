@@ -7,7 +7,7 @@
                    [pandeiro/boot-http        "0.8.3"  :scope "test"]
                    [com.cemerick/piggieback   "0.2.1"  :scope "test"]
                    [org.clojure/tools.nrepl   "0.2.13" :scope "test"]
-                   [deraen/boot-less          "0.2.1"  :scope "test"]
+                   [deraen/boot-less          "0.6.2"  :scope "test"]
                    [weasel                    "0.7.0"  :scope "test"]
                    [org.clojure/clojurescript "1.9.946"]
                    [rum                       "0.10.8"]     ; react
