@@ -4,11 +4,19 @@
    [goog.string :as gstring]
    [duplo.ui.svg :as svg]))
 
+(defn dots-in-middle [s n]
+  (let [middle (/ (count s) 2)
+        offs (int (/ n 2))
+        [first tail] (split-at offs s)
+        [_ end] (split-at (* offs 2) tail)]
+    (reduce str (concat first "..." end))))
+
+
 (rum/defc block-item
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
      [:div.row
      [:div.item.fixed [:div.label "Index"] [:div.value index]]
-     [:div.item.grow [:div.label "Hash"] [:div.value (str 0 (gstring/unescapeEntities "&times;") (subs hsh 2))]]
+     [:div.item.grow [:div.label "Hash"] [:div.value.big (str 0 (gstring/unescapeEntities "&times;") hsh)] [:div.value.small (str 0 (gstring/unescapeEntities "&times;") (dots-in-middle hsh 30))]]
      [:div.item.fixed [:div.label "Transactions"] [:div.value(count tx)]]
      [:div.item.fixed [:div.label "Size"] [:div.value size]]
      [:div.item.fixed [:div.label "Confirmations"] [:div.value confirmations]]]
@@ -27,7 +35,7 @@
   (let [name-en (->> names (filter #(= (:lang %) "en")) first :name)]
     [:div.row
      [:div.item.fixed [:div.label "Name"] name-en]
-     [:div.item.grow  [:div.label "Hash"] txid]
+     [:div.item.grow  [:div.label "tx ID"] txid]
      [:div.item.fixed [:div.label "Type"]  type]
      [:div.item.fixed [:div.label "Amount"]  amount]
      [:div.item.fixed [:div.label "Admin"] admin]
