@@ -62,7 +62,9 @@
    [:li [:button {:on-click #(callback-fn [:claim-initial-neo])}
     "Claim Initial NEO"]]
    [:li [:button {:on-click #(callback-fn [:open-form :make-tx])}
-    "Make Transaction"]]])
+         "Make Transaction"]]
+   [:li [:button {:on-click #(callback-fn [:claim-gas])}
+    "Claim GAS"]]])
 
 (rum/defc wallet-list < rum/reactive
   [key-pairs callback-fn]

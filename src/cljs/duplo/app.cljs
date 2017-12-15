@@ -28,6 +28,7 @@
                           "makekeys" [3] #(blockchain/refresh-keys!))
           :claim-initial-neo (blockchain/make-request
                               "claiminitialneo" #())
+          :claim-gas (blockchain/make-request "claimgas" #())
           :open-form (assoc-state! [:form] (first params))
           :close-form (assoc-state! [:form] nil)
           :make-tx (blockchain/make-transaction (first params))
