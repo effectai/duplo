@@ -15,6 +15,7 @@
   ["/" {"" :blocks
         "blocks" :blocks
         "assets" :assets
+        "contracts" :contracts
         "wallet" :wallet}])
 
 (defn event-handler [chan]
@@ -32,6 +33,7 @@
           :open-form (assoc-state! [:form] (first params))
           :close-form (assoc-state! [:form] nil)
           :make-tx (blockchain/make-transaction (first params))
+          :deploy-contract (blockchain/deploy-contract (first params))
           nil))
       (recur)))
 

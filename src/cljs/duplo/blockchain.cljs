@@ -74,3 +74,8 @@
 
 (defn make-transaction [{:keys [to-addr amount asset]}]
   (make-request "maketransaction" [to-addr amount asset] #()))
+
+(defn deploy-contract [contract]
+  (make-request "deploycontract"
+                (map contract [:name :version :author :email :description
+                               :needs-storage :params :return :script]) #()))

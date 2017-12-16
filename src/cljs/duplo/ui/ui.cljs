@@ -58,13 +58,18 @@
 (defn wallet-menu [callback-fn]
   [:ul
    [:li [:button {:on-click #(callback-fn [:generate-keys])}
-    "Generate Keys"]]
+         "Generate Keys"]]
    [:li [:button {:on-click #(callback-fn [:claim-initial-neo])}
-    "Claim Initial NEO"]]
+         "Claim Initial NEO"]]
    [:li [:button {:on-click #(callback-fn [:open-form :make-tx])}
          "Make Transaction"]]
    [:li [:button {:on-click #(callback-fn [:claim-gas])}
-    "Claim GAS"]]])
+         "Claim GAS"]]])
+
+(defn contracts-menu [callback-fn]
+  [:ul
+   [:li [:button {:on-click #(callback-fn [:open-form :deploy-contract])}
+    "Deploy Contract"]]])
 
 (rum/defc wallet-list < rum/reactive
   [key-pairs callback-fn]
@@ -89,6 +94,12 @@
    [:h3 "Assets"]
    (asset-list (rum/cursor-in state [:assets]))])
 
+(rum/defc page-contracts [state callback-fn]
+  [:div.block-list
+   [:h3 "Contracts"]
+   (contracts-menu callback-fn)
+   (form/active-form callback-fn)])
+
 (rum/defc page-wallet [state callback-fn]
   [:div.block-list
    [:h3 "Keys"]
@@ -109,5 +120,6 @@
    [:main (case (rum/react (rum/cursor-in state [:route]))
      :blocks (page-blocks state)
      :assets (page-assets state)
+     :contracts (page-contracts state callback-fn)
      :wallet (page-wallet state callback-fn))]
    [:footer]])
