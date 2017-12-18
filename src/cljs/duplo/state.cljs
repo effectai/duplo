@@ -5,6 +5,7 @@
                       :form nil                               ; current active form
                       :route :blocks                          ; current active route
                       :height 0                               ; blockchain height
+                      :contracts []                           ; registered assets
                       :assets []                              ; registered assets
                       :block-ids []                           ; block ids in UI
                       :blocks {}                              ; map of blocks keyed by id

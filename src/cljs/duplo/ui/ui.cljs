@@ -40,6 +40,14 @@
      [:div.item.fixed [:div.label "Amount"]  amount]
      [:div.item.fixed [:div.label "Admin"] admin]]))
 
+(rum/defc contract-item
+  [{:keys [author email name hash description]}]
+  [:div.row
+   [:div.item.fixed [:div.label "Name"] name]
+   [:div.item.grow  [:div.label "Hash"] hash]
+   [:div.item.fixed [:div.label "Email"] email]
+   [:div.item.fixed [:div.label "Description"] description]])
+
 (rum/defc asset-list < rum/reactive [items]
   (conj
    [:div]
@@ -83,6 +91,15 @@
               reverse
               (map wallet-item)))))
 
+(rum/defc contract-list < rum/reactive
+  [contracts callback-fn]
+  (conj
+   [:div.table
+    (contracts-menu callback-fn)
+    (form/active-form callback-fn)]
+   (conj [:div]
+         (map contract-item (rum/react contracts)))))
+
 (rum/defc page-blocks [state]
   [:div.block-list
    [:h3 "Blocks"]
@@ -97,8 +114,7 @@
 (rum/defc page-contracts [state callback-fn]
   [:div.block-list
    [:h3 "Contracts"]
-   (contracts-menu callback-fn)
-   (form/active-form callback-fn)])
+   (contract-list (rum/cursor-in state [:contracts]) callback-fn)])
 
 (rum/defc page-wallet [state callback-fn]
   [:div.block-list

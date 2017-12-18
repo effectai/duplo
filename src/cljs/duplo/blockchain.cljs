@@ -31,6 +31,12 @@
    (fn [res]
      (swap! state #(assoc-in % [:keys] res)))))
 
+(defn refresh-contracts! []
+  (make-request
+   "getcontracts"
+   (fn [res]
+     (swap! state #(assoc-in % [:contracts] res)))))
+
 (defn- fetch-block [n]
   (make-request
    "getblock" [n 1]
@@ -56,7 +62,8 @@
    (fn [res]
      (swap! state #(assoc-in % [:assets] res))))
 
-  (refresh-keys!))
+  (refresh-keys!)
+  (refresh-contracts!))
 
 (defn- update-block! []
   (let [cur-height (:height @state)]
