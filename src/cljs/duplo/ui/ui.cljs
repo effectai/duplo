@@ -5,6 +5,24 @@
    [duplo.ui.svg :as svg]
    [duplo.ui.form :as form]))
 
+(defn split-hex [s parts step-size]
+        (let [mid (/ (count s) 2)
+              n step-size]
+        (loop [i 0 
+               cur nil
+               l-idx mid 
+               r-idx mid]
+          (if (< i (count parts))
+            (recur (inc i) 
+                   (if (nil? cur)
+                     [:span {:class (nth parts i)} 
+                      (subs s (- l-idx n) (+ r-idx n))]
+                     [:span {:class (nth parts i)} 
+                      (subs s (- l-idx n) l-idx) cur (subs s r-idx (+ r-idx n))])
+                   (- l-idx n)
+                   (+ r-idx n))
+            [:span.hex (subs s 0 l-idx) cur (subs s r-idx (count s))]))))
+
 (defn dots-in-middle [s n]
   (let [middle (/ (count s) 2)
         offs (int (/ n 2))
@@ -16,7 +34,7 @@
   [{hsh :hash :keys [index confirmations size time tx] :as block}]
      [:div.row
      [:div.item.fixed [:div.label "Index"] [:div.value index]]
-     [:div.item.grow [:div.label "Hash"] [:div.value.big (str 0 (gstring/unescapeEntities "&times;") hsh)] [:div.value.small (str 0 (gstring/unescapeEntities "&times;") (dots-in-middle hsh 30))]]
+     [:div.item.grow  [:div.label "Hash"] [:div.value (split-hex hsh ["small" "medium" "big"] 8)]]
      [:div.item.fixed [:div.label "Transactions"] [:div.value(count tx)]]
      [:div.item.fixed [:div.label "Size"] [:div.value size]]
      [:div.item.fixed [:div.label "Confirmations"] [:div.value confirmations]]]
@@ -34,19 +52,19 @@
   [{names :name :keys [type amount admin txid] :as asset}]
   (let [name-en (->> names (filter #(= (:lang %) "en")) first :name)]
     [:div.row
-     [:div.item.fixed [:div.label "Name"] name-en]
-     [:div.item.grow  [:div.label "Asset ID"] txid]
-     [:div.item.fixed [:div.label "Type"]  type]
-     [:div.item.fixed [:div.label "Amount"]  amount]
-     [:div.item.fixed [:div.label "Admin"] admin]]))
+     [:div.item.fixed [:div.label "Name"] [:div.value name-en]]
+     [:div.item.grow  [:div.label "Asset ID"] [:div.value (split-hex txid ["small" "medium" "big"] 8)]]
+     [:div.item.fixed [:div.label "Type"]  [:div.value type]]
+     [:div.item.fixed [:div.label "Amount"]  [:div.value amount]]
+     [:div.item.fixed [:div.label "Admin"] [:div.value (split-hex admin ["small" "medium" "big"] 3)]]]))
 
 (rum/defc contract-item
   [{:keys [author email name hash description]}]
   [:div.row
-   [:div.item.fixed [:div.label "Name"] name]
-   [:div.item.grow  [:div.label "Hash"] hash]
-   [:div.item.fixed [:div.label "Email"] email]
-   [:div.item.fixed [:div.label "Description"] description]])
+   [:div.item.fixed [:div.label "Name"] [:div.value name]]
+   [:div.item.grow  [:div.label "Hash"] [:div.value hash]]
+   [:div.item.fixed [:div.label "Email"] [:div.value email]]
+   [:div.item.fixed [:div.label "Description"] [:div.value description]]])
 
 (rum/defc asset-list < rum/reactive [items]
   (conj
@@ -58,10 +76,10 @@
   [{:keys [public-key address wif]
     {:keys [neo gas]} :balance :as key}]
   [:div.row
-   [:div.item.grow [:div.label "Address"] address]
-   [:div.item.grow [:div.label "Public key"] public-key]
-   [:div.item.fixed [:div.label "NEO"] neo]
-   [:div.item.fixed [:div.label "GAS"] gas]])
+   [:div.item.grow [:div.label "Address"] [:div.value address]]
+   [:div.item.grow [:div.label "Public key"] [:div.value (split-hex public-key ["small" "medium" "big"] 8)]]
+   [:div.item.fixed [:div.label "NEO"] [:div.value neo]]
+   [:div.item.fixed [:div.label "GAS"] [:div.value gas]]])
 
 (defn wallet-menu [callback-fn]
   [:ul

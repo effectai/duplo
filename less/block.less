@@ -45,25 +45,22 @@
              }
              .item {
                  &.grow {
-                     min-width: 40%;
                  }
 
                  display: flex;
                  flex-flow: column nowrap;
-                 flex-basis: 0;
                  flex-grow: 1;
+                 flex-basis: 0;
                  padding: 16px;
-                 word-break: break-word;
                  font-weight: @fw-bold;
                  .label {
                      color: @darkgrey;
                      width: 30%;
                      font-weight: @fw-normal;
-                     word-break: normal;
                  }
 
-                 .small{display:none;}
                  .value {
+                     overflow-wrap: break-word;
                      font-size: 20px;
                      font-family: @monospace-font;
                  }
@@ -77,24 +74,32 @@
 /************************
  *       MOBILE         *
  ************************/
+
+
 @media @tablet {
         .block-list .table .row .item{
-                .small{
-                        display:block;
-                }
-                .big{
-                        display:none;
+                .medium{
+                        display:inline-block;
+                        width:10px;
+                        text-overflow:ellipsis;
+                        overflow:hidden;
+                        overflow-wrap:normal;
+                        line-height:1rem;
+                        margin: 0 5px;
                 }
         }
 }
 
 @media @mobile {
         .block-list .table .row .item{
-                .small{
-                        display:block;
-                }
                 .big{
-                        display:none;
+                        line-height:1rem;
+                        display:inline-block;
+                        width:10px;
+                        text-overflow:ellipsis;
+                        overflow:hidden;
+                        overflow-wrap:normal;
+                        margin: 0 5px;
                 }
         }
 }
